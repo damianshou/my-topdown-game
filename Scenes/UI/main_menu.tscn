@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://jdvna0ajaiq"]
+
+[ext_resource type="Script" uid="uid://xxcpjttur2go" path="res://Scenes/UI/main_menu.gd" id="1_5wsvm"]
+[ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://Sprites/background_tiled.png" id="2_o14dv"]
+[ext_resource type="Shader" uid="uid://d1glq72lhghoo" path="res://Shaders/background.gdshader" id="2_u7lva"]
+[ext_resource type="LabelSettings" uid="uid://b4g5hxqw623mb" path="res://Extra/font_48.tres" id="4_u7lva"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o14dv"]
+shader = ExtResource("2_u7lva")
+shader_parameter/speed = 0.5
+
+[node name="MainMenu" type="Control" unique_id=1426302238]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsvm")
+
+[node name="Backgound" type="TextureRect" parent="." unique_id=1084612465]
+material = SubResource("ShaderMaterial_o14dv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o14dv")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="." unique_id=1695037180]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41796875
+anchor_right = 0.58203125
+anchor_bottom = 0.15277778
+offset_top = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+text = "TOPDOWN
+GAME"
+label_settings = ExtResource("4_u7lva")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
