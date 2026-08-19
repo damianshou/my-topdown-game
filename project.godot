@@ -15,14 +15,20 @@ run/main_scene="uid://jdvna0ajaiq"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bwksm4656yb0y"
+
 [autoload]
 
 Transiton="*uid://4ttgwo5jonit"
+Global="*uid://d4j3buucqfmne"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"

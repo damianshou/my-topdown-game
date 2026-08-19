@@ -2,14 +2,36 @@ extends Control
 class_name MainMenu
 @onready var main_buttons: Control = $MainButtons
 @onready var setting_buttons: Control = $SettingButtons
+@onready var ui_sound: AudioStreamPlayer = $UISound
+@onready var music_label: Label = %MusicLabel
+@onready var sfx_label: Label = %SFXLabel
+@onready var window_label: Label = %WindowLabel
+
+func  update_audio_bus(bus_name: String, label: Label, is_on: bool) -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_name),not is_on);
+	label.text = "%s: %s" % [bus_name,"ON" if is_on else "OFF"];
+	
+
+func _ready() -> void:
+	update_audio_bus("Music",music_label,Global.settings.music);
+	update_audio_bus("SFX",sfx_label,Global.settings.sfx);
+	update_fullscreen(Global.settings.fullscreen);
+	
+	
+func update_fullscreen(is_on: bool) -> void:
+	var mode = DisplayServer.WINDOW_MODE_FULLSCREEN if is_on else DisplayServer.WINDOW_MODE_WINDOWED;
+	DisplayServer.window_set_mode(mode);
+	window_label.text = "FULLSCREEN" if is_on else "WINDOW";
 
 # MainButtons 
 
 func _on_play_button_pressed() -> void:
+	ui_sound.play()
 	Transiton.transition_to("res://Scenes/CharacterSelection/character_selection.tscn")
 
 
 func _on_setting_button_pressed() -> void:
+	ui_sound.play()
 	# 动画位移
 	var tween := create_tween();
 	tween.tween_property(main_buttons,"global_position:y",350,0.2);
@@ -17,23 +39,34 @@ func _on_setting_button_pressed() -> void:
 	tween.tween_property(setting_buttons,"global_position:x",145,0.3);
 
 func _on_quit_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	get_tree().quit()
 
 # SettingsButtons
 
 func _on_music_button_pressed() -> void:
-	pass # Replace with function body.
-
+	ui_sound.play()
+	# true 为设置静音， false 为设置不静音
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),true);
+	# 替换为新方法
+	update_audio_bus("Music",music_label,not Global.settings.music);
+	Global.settings.music = not Global.settings.music
 
 func _on_sfx_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),true);
+	update_audio_bus("SFX",sfx_label,not Global.settings.sfx);
+	Global.settings.sfx = not Global.settings.sfx
 
 
 func _on_window_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	update_fullscreen(not Global.settings.fullscreen);
+	Global.settings.fullscreen = not Global.settings.fullscreen
 
 
 func _on_back_button_pressed() -> void:
+	ui_sound.play()
 	# 动画位移
 	var tween := create_tween();
 	tween.tween_property(setting_buttons,"global_position:x",558,0.3);

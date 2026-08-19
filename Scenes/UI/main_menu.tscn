@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://b4g5hxqw623mb" path="res://Extra/font_48.tres" id="4_u7lva"]
 [ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://Sprites/Interface/Tilemap/tilemap_packed.png" id="5_4pqbp"]
 [ext_resource type="LabelSettings" uid="uid://c578xsh8avb1n" path="res://Extra/font_16.tres" id="6_4pqbp"]
+[ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://Sounds/select-a.ogg" id="7_gih0s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o14dv"]
 shader = ExtResource("2_u7lva")
@@ -228,14 +229,15 @@ texture_normal = SubResource("AtlasTexture_4pqbp")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingButtons/VBoxContainer/Music/MusicButton" unique_id=1279594777]
+[node name="MusicLabel" type="Label" parent="SettingButtons/VBoxContainer/Music/MusicButton" unique_id=1279594777]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Music"
+text = "Music: ON"
 label_settings = ExtResource("6_4pqbp")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -262,14 +264,15 @@ texture_normal = SubResource("AtlasTexture_4pqbp")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingButtons/VBoxContainer/SFX/SFXButton" unique_id=49113559]
+[node name="SFXLabel" type="Label" parent="SettingButtons/VBoxContainer/SFX/SFXButton" unique_id=49113559]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "SFX"
+text = "SFX: ON"
 label_settings = ExtResource("6_4pqbp")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -296,7 +299,8 @@ texture_normal = SubResource("AtlasTexture_4pqbp")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingButtons/VBoxContainer/Window/WindowButton" unique_id=2039740331]
+[node name="WindowLabel" type="Label" parent="SettingButtons/VBoxContainer/Window/WindowButton" unique_id=2039740331]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -341,6 +345,10 @@ text = "Back"
 label_settings = ExtResource("6_4pqbp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UISound" type="AudioStreamPlayer" parent="." unique_id=2007444262]
+stream = ExtResource("7_gih0s")
+bus = &"SFX"
 
 [connection signal="pressed" from="MainButtons/VBoxContainer/Play/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainButtons/VBoxContainer/Setting/SettingButton" to="." method="_on_setting_button_pressed"]
