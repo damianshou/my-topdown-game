@@ -6,7 +6,7 @@ class_name MainMenu
 # MainButtons 
 
 func _on_play_button_pressed() -> void:
-	pass # Replace with function body.
+	Transiton.transition_to("res://Scenes/CharacterSelection/character_selection.tscn")
 
 
 func _on_setting_button_pressed() -> void:
