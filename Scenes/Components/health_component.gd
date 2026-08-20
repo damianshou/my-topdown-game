@@ -12,6 +12,7 @@ var current_health: float
 # 最大生命
 var max_health: float
 
+# 初始化生命量
 func init_health(value: float) ->void:
 	current_health = value;
 	max_health = value;
@@ -24,10 +25,11 @@ func take_damage(value: float) -> void:
 		
 		if current_health <= 0:
 			die()
-			
+# 死亡
 func die() -> void:
 	on_unit_dead.emit()
 
+# 回血
 func heal(value: float) -> void:
 	if current_health >= max_health:
 		return

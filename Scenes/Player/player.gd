@@ -13,6 +13,7 @@ var movement: Vector2
 var direction: Vector2
 
 func _ready() -> void:
+	# 初始化血量
 	health_component.init_health(data.max_hp)
 
 func _physics_process(delta: float) -> void:
@@ -26,7 +27,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		movement = Vector2.ZERO
 		anim_sprite.play("idle")
-		
+
+	# 移动玩家
 	velocity = movement
 	move_and_slide()
 	rotate_player()
@@ -39,14 +41,14 @@ func rotate_player() -> void:
 		else:
 			visuals.scale = Vector2(-1.25,1.25)
 
-
+# 监听血量变化
 func _on_health_component_on_unit_damaged(amount: float) -> void:
 	EventBus.on_player_health_updated.emit(health_component.current_health,health_component.max_health)
 
-
+# 监听死亡
 func _on_health_component_on_unit_dead() -> void:
 	queue_free()
-
+# 监听治疗
 func _on_health_component_on_unit_healed(amount: float) -> void:
 	pass # Replace with function body.
 
