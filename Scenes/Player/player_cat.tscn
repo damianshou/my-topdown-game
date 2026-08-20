@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c5yfc1uw3bve3"]
+
+[ext_resource type="PackedScene" uid="uid://bokub3gd0uqse" path="res://Scenes/Player/player_base.tscn" id="1_cxprn"]
+[ext_resource type="Resource" uid="uid://bvega5qn7ddxs" path="res://Data/Player/player_cat.tres" id="2_hefsp"]
+[ext_resource type="Texture2D" uid="uid://dawvmsgg5mc6o" path="res://Sprites/Shadow.png" id="2_q0gcw"]
+[ext_resource type="Texture2D" uid="uid://bhxl0srjwmbgv" path="res://Sprites/Players/tile_0007.png" id="3_hefsp"]
+[ext_resource type="Texture2D" uid="uid://c2onnhy8ivnwm" path="res://Sprites/Players/tile_0004.png" id="4_yajxs"]
+[ext_resource type="Texture2D" uid="uid://daftprnlwmrij" path="res://Sprites/Players/tile_0005.png" id="5_5u0oq"]
+[ext_resource type="Texture2D" uid="uid://bj5v2dmr0ecwv" path="res://Sprites/Players/tile_0006.png" id="6_mv6c6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ismgo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hefsp")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yajxs")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5u0oq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mv6c6")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb3mt"]
+radius = 8.0
+
+[node name="PlayerCat" unique_id=1407601064 instance=ExtResource("1_cxprn")]
+data = ExtResource("2_hefsp")
+
+[node name="Shadow" parent="Visuals" parent_id_path=PackedInt32Array(2138058651) index="0" unique_id=109165658]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_q0gcw")
+
+[node name="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(2138058651) index="1" unique_id=505024297]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_ismgo")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1303580607]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_hb3mt")
